@@ -1,0 +1,27 @@
+{
+    "name": "yproject",
+    "version": "1.0.0",
+    "description": "Command line tool to simplify YUI3-based projects & librairies development",
+    "author": "Eric Abouaf <eric.abouaf@gmail.com>",
+    "bugs": { "web" : "http://github.com/neyric/yproject/issues" },
+    "os": ["darwin", "linux"],
+    "contributors": [
+        "Eric Abouaf <eric.abouaf@gmail.com> (http://neyric.com)"
+    ],
+    "engines": {
+        "node" : ">=0.2.0"
+    },
+    "bin" : {
+       "yproject" : "./bin/yproject.js"
+    },
+    "dependencies": {
+        "ejs" : ">=0.2.0",
+        "xml2js": ">=0.1.5"
+    },
+    "licenses":[
+    ],
+    "repository": {
+        "type":"git",
+        "url":"http://github.com/neyric/yproject.git"
+    }
+}
