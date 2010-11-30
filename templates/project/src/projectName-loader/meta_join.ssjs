@@ -24,7 +24,7 @@ fs.readdir(srcDirectory, function(err, files) {
 			  			if (err) throw err;
 			
 						var lines = data.toString().split("\n");
-						var componentName = null, requires = null;
+						var componentName = null, requires = [];
 						
 						lines.forEach(function(line) {
 							var m = line.match(/^\s*component\s*=\s*([^\n]*)/);
@@ -34,9 +34,15 @@ fs.readdir(srcDirectory, function(err, files) {
 							
 							var m = line.match(/^\s*component.requires\s*=\s*([^\n]*)/);
 							if(m){
-								requires = m[1].split(',');
-								for(var i = 0 ; i < requires.length ; i++) {
-									requires[i] = requires[i].trim();
+								var req = m[1].trim().split(',');
+								if(req != "") {
+									requires = req;
+									for(var i = 0 ; i < requires.length ; i++) {
+										requires[i] = requires[i].trim();
+									}
+								}
+								else {
+									requires = [];
 								}
 							}
 						});

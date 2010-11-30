@@ -1,21 +1,49 @@
 # yproject
 
-yproject is a command-line utility to scaffold projects and components using the [YUI Build Tool](http://yuilibrary.com/projects/builder)
+yproject is a command-line utility to scaffold projects and components using the YUI3 library and the [YUI Build Tool](http://yuilibrary.com/projects/builder)
 
-YUI Builder contains the component build tool, which is the ANT based build system YUI uses to generate the code in the YUI 2 and YUI 3 build directories, from the contents of the src directories for each component.
-
-yproject contains a project template and a module template to quickly bootstrap your project.
+It contains a project template and a module template to quickly bootstrap your project enforcing best practices from the start.
 
 ## Features
 
  * command to create a project
  * command to add a new module
- * script to generate the API documentation using YUIdoc
- * default loader module to generate the YUI3 modules metadata
+
+The generated projects include :
+
+ * default loader module to generate the YUI3 modules metadata with building script
+ * development HTTP server using express.js to run tests
+
+Through YUI Builder 
+
+ * ANT based build system YUI uses
+ * Declare module dependencies for the YUI loader
+ * Code checking with JSlint
+ * code & assets minification with YUI Compressor
+ 
+Through YUI Doc
+
+ * Documentation: customizable script to generate the API documentation
+ 
+Through YUI Test
+
+ * Test Driven Development (TDD) : YUI Test, Selenium
+ * YUI Test instrumentation script => Test coverage !
+ * Selenium scripts to launch the tests
+ * easy Continuous Integration with Hudson
+ 
+ * Think there's too much? The generated project is delete-key friendly. :)
 
 ## Installation
 
     npm install yproject
+
+Or install it as a developer :
+
+    git clone git://github.com/neyric/yproject.git
+    cd yproject
+    npm link .
+
 
 ## Usage
 
@@ -32,7 +60,7 @@ This will create the following structure :
        README.md/
        scripts/
        src/
-          loader/
+          myproject-loader/
 
 ### Adding a module
 
@@ -92,33 +120,31 @@ You can change those, as well as other options (such as the project's version, n
 
 (Note: make sure that the template directory isn't a git repository, because YUI Doc doesn't like that. rm -rf .git)
 
+
+### Local server
+
+    cd scripts
+    node server.js
+
+### Testing
+
+If you're not familiar with YUI Test, I suggest you take a look at those videos :
+
+ * http://developer.yahoo.com/yui/theater/video.php?v=adams-yuiconf2009-testing
+ * http://developer.yahoo.com/yui/theater/video.php?v=yuiconf2010-yuitest
+
+YUI Test
+
+ * Write Tests using YUI test. 
+ * The generated modules contains a default test, which uses the instrumented code
+
+Selenium
+
+ * run scripts/gen_tests_xml.js => generates the tests.xml file to launch selenium tests
+ * Automatically save test results
+
+
 ## Full example
 
+See example.sh to see a complete example
 
-    # Create the project
-    yproject create mytest
-    cd mytest
-    
-    # Create some modules
-    yproject module hellomodule
-    yproject module dummy
-    
-    # Build Everything
-    cd src
-    ant all
-
-    # Build the doc (don't forget to clean before to remove build_tmp files)
-    ant clean
-    cd ..
-    cd scripts
-    chmod u+x apidoc.sh
-    ./apidoc.sh
-    
-    
-
-## TODO
-
- * YUItest instrumentation script
- * selenium scripts to launch the tests    
- 
- 

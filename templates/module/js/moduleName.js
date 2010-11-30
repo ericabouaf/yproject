@@ -16,8 +16,8 @@
 	/**
 	 * Just a dummy method
 	 */
-	dummy: function() {
-		
+	someFunc: function() {
+			return true;
 	}
 	
 };
