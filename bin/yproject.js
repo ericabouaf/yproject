@@ -35,6 +35,9 @@ yproject = {
 	
 	commands: {
 		
+		/**
+		 * Create command to create project from templates/project
+		 */
 		create: function(arglist) {
 			var projectName = arglist[0];
 			if(!projectName) {
@@ -45,6 +48,9 @@ yproject = {
 			yproject.copyDirSyncRecursive( __dirname+'/../templates/project', projectName, {projectName: projectName});
 		},
 		
+		/**
+		 * Create command to create a widget from templates/widget
+		 */
 		widget: function(arglist) {
 			var moduleName = arglist[0];
 			if(!moduleName) {
@@ -52,10 +58,6 @@ yproject = {
 				this.help();
 				return;
 			}
-			
-			//console.log("original: "+moduleName);
-			//console.log("camelized: "+moduleName.camelize());
-			
 			// Retrieve the project name:
 			var data = fs.readFileSync('src/build.xml', encoding="utf8");
 			
@@ -72,6 +74,9 @@ yproject = {
 			
 		},
 		
+		/**
+		 * Create command to create a module from templates/module
+		 */
 		module: function(arglist) {
 			var moduleName = arglist[0];
 			if(!moduleName) {
@@ -96,9 +101,10 @@ yproject = {
 		},
 		
 		help: function(arglist) {
-			console.log("Usage:\n");
-			console.log("\t\typroject create myproject");
-			console.log("\t\typroject module mymodule");
+			console.log("Usage:");
+			console.log("\t'yproject create myproject'\tCreate a project from scratch");
+			console.log("\t'yproject module mymodule' \tAdd a module to the current project");
+			console.log("\t'yproject widget my-widget'\tAdd a widget module to the current project");
 		}
 		
 	},

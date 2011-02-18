@@ -6,8 +6,9 @@ It contains a project template and a module template to quickly bootstrap your p
 
 ## Features
 
- * command to create a project
- * command to add a new module
+ * command to scaffold a project
+ * command to scaffold a new module
+ * command to scaffold a widget (with intl and skin files)
 
 The generated projects include :
 
@@ -77,6 +78,32 @@ This will create the following structure in src/ :
           mymodule.js
        tests/
           index.html
+
+### Adding a widget
+
+Go to your project directory and type :
+
+    yproject widget my-widget
+
+This will create the following structure in src/ :
+
+    my-widget/
+       assets/
+          my-widget-core.css
+          skins/
+             sam/
+                my-widget-skin.css
+       build.xml
+       build.properties
+       lang/
+          my-widget.js
+          my-widget_fr.js
+       src/
+          my-widget.js
+       tests/
+          index.html
+
+The generated widget is skinable and internationalizable by default.
 
 ### Building
 
