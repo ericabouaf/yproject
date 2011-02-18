@@ -30,7 +30,7 @@ version=0.0.1
 
 # The version of YUI the project is using.  This effects the output for
 # YUI configuration attributes.  This should start with '2' or '3'.
-yuiversion=3.2.0
+yuiversion=3.3.0
 
 projectName="<%= projectName %>"
 
