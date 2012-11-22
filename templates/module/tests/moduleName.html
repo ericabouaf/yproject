@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title><%= moduleName %> tests</title>
-<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-<script type="text/javascript" src="../../../tests/instrumented/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
+    <meta charset="utf-8" />
+    <title><%= moduleName %> tests</title>
+    <script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+    <% if (projectName) { %>
+    <script type="text/javascript" src="../../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
+    <% } %>
 </head>
 <body class="yui3-skin-sam">
 <h1><%= moduleName %> Tests</h1>
 <script type="text/javascript">
-
-YUI_config.groups.<%= projectName %>.base = '../../../tests/instrumented/'; // serve instrumented modules
 
 YUI().use("test", "console", "<%= moduleName %>", function(Y) {
   
