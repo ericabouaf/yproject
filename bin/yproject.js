@@ -1,34 +1,36 @@
 #!/usr/bin/env node
 
-var fs = require("fs"), ejs = require('ejs'), xml2js = require('xml2js');
+var fs     = require("fs"),
+    ejs    = require('ejs'),
+    xml2js = require('xml2js');
 
 // "widget-parent".camelize() -> "WidgetParent"
 if(!String.prototype.camelize) {
-String.prototype.camelize=function(lowFirstLetter)
-  {
-    var str=this.toLowerCase();
-    var str_path=str.split('/');
-    for(var i=0;i<str_path.length;i++)
-    {
-      var str_arr=str_path[i].split('-');
-      var initX=((lowFirstLetter&&i+1==str_path.length)?(1):(0));
-      for(var x=initX;x<str_arr.length;x++) {
-        str_arr[x]=str_arr[x].charAt(0).toUpperCase()+str_arr[x].substring(1);
+   String.prototype.camelize = function (lowFirstLetter) {
+      var str = this.toLowerCase(),
+          str_path = str.split('/');
+
+      for (var i=0; i < str_path.length; i++) {
+         var str_arr = str_path[i].split('-'),
+             initX   = ((lowFirstLetter&&i+1==str_path.length)?(1):(0));
+
+         for (var x = initX; x < str_arr.length; x++) {
+            str_arr[x] = str_arr[x].charAt(0).toUpperCase() + str_arr[x].substring(1);
+         }
+         str_path[i] = str_arr.join('');
       }
-      str_path[i]=str_arr.join('');
-    }
-    str=str_path.join('::');
-    return str;
-  };
+      str = str_path.join('::');
+      return str;
+   };
 }
 
 
 var argv = process.argv.slice(2),
-    arg = "", 
+    arg = "",
     conf = {},
     key,
     arglist = [],
-    command, 
+    command,
     flagsDone;
 
 yproject = {
