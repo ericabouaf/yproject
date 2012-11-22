@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title><%= moduleName %> tests</title>
-    <script type="text/javascript" src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
+    <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
     <% if (projectName) { %>
-    <script type="text/javascript" src="../../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
+    <script src="../../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
     <% } else { %>
-    <script type="text/javascript" src="../../../build/<%= moduleName %>/<%= moduleName %>-debug.js"></script>
+    <script src="../../../build/<%= moduleName %>/<%= moduleName %>-debug.js"></script>
     <% } %>
 </head>
 <body class="yui3-skin-sam">
 <h1><%= moduleName %> Tests</h1>
-<script type="text/javascript">
+<script>
 
 YUI().use("test", "console", "<%= moduleName %>", function(Y) {
   
