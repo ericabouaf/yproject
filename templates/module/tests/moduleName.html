@@ -12,13 +12,21 @@
 </head>
 <body class="yui3-skin-sam">
 <h1><%= moduleName %> Tests</h1>
+<div id="testLogger"></div>
 <script>
 
-YUI().use("test", "console", "<%= moduleName %>", function(Y) {
+YUI().use("test", "test-console", "<%= moduleName %>", function(Y) {
   
     window.Y = Y; // keep this for the yui selenium driver
 
-    var c = new Y.Console().render();
+   //create the console
+   (new Y.Test.Console({
+      newestOnTop : false,
+      filters: {
+         pass: true,
+         fail: true
+      }
+   })).render('#testLogger');
 
     var testCase = new Y.Test.Case({
         name: "<%= moduleName %> tests",
