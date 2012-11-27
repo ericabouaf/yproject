@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title><%= moduleName %> tests</title>
-<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-<script type="text/javascript" src="../../../tests/instrumented/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
+    <meta charset="utf-8" />
+    <title><%= moduleName %> tests</title>
+    <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
+    <% if (projectName) { %>
+    <script src="../../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
+    <% } else { %>
+    <script src="../../../build/<%= moduleName %>/<%= moduleName %>-debug.js"></script>
+    <% } %>
 </head>
 <body class="yui3-skin-sam">
 <h1><%= moduleName %> Tests</h1>
-<script type="text/javascript">
+<div id="testLogger"></div>
+<script>
 
-YUI_config.groups.<%= projectName %>.base = '../../../tests/instrumented/'; // serve instrumented modules
-
-YUI().use("test", "console", "<%= moduleName %>", function(Y) {
+YUI().use("test", "test-console", "<%= moduleName %>", function(Y) {
   
     window.Y = Y; // keep this for the yui selenium driver
 
-    var c = new Y.Console().render();
+   //create the console
+   (new Y.Test.Console({
+      newestOnTop : false,
+      filters: {
+         pass: true,
+         fail: true
+      }
+   })).render('#testLogger');
 
     var testCase = new Y.Test.Case({
         name: "<%= moduleName %> tests",

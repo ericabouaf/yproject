@@ -9,9 +9,9 @@
  * @class <%= moduleName %>
  * @constructor
  */
-<%= moduleName %> = function() {};
+<%= moduleName.camelize() %> = function() {};
 
-<%= moduleName %>.prototype = {
+<%= moduleName.camelize() %>.prototype = {
 
 	/**
 	 * Just a dummy method
@@ -22,4 +22,4 @@
 	
 };
 
-Y.<%= moduleName %> = <%= moduleName %>;
+Y.<%= moduleName.camelize() %> = <%= moduleName.camelize() %>;

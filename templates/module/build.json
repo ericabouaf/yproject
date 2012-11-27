@@ -1,0 +1,10 @@
+{
+   "name": "<%= moduleName %>",
+   "builds": {
+      "<%= moduleName %>": {
+         "jsfiles": [
+            "<%= moduleName %>.js"
+         ]
+      }
+   }
+}

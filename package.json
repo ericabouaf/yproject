@@ -15,8 +15,7 @@
        "yproject" : "./bin/yproject.js"
     },
     "dependencies": {
-        "ejs" : ">=0.4.3",
-        "xml2js": ">=0.1.10"
+        "ejs" : ">=0.4.3"
     },
     "licenses":[
     ],
