@@ -1,0 +1,16 @@
+{
+    "name": "<%= projectName %>-loader",
+    "builds": {
+        "<%= projectName %>-loader": {
+            "exec": [
+                "./scripts/meta_join.js"
+            ],
+            "jsfiles": [
+                "<%= projectName %>.js"
+            ]
+        }
+    },
+    "shifter": {
+        "jsstamp": false
+    }   
+}

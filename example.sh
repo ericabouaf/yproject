@@ -1,32 +1,21 @@
 #!/bin/sh
 
 # Create the project
-yproject create mytest
-cd mytest
+yproject mytest
 
 # Create some modules
-yproject module hellomodule
-yproject module dummy
+cd mytest/src
+ymodule hellomodule dummy
 
 # Build Everything
-cd src
-ant all
+shifter --walk
 
-# Build the doc (don't forget to clean before to remove build_tmp files)
-ant clean
+# Build the doc
 cd ..
-cd scripts
-chmod u+x apidoc.sh
-/bin/sh apidoc.sh
+yuidoc src
 
-# Tests
-node gen_tests_xml.js
-/bin/sh instrument_code.sh
+# Documentation for the project
+selleck --out docs
 
-node server.js
-
-open http://localhost:3000
-
-#/bin/sh selenium_server.sh
-#echo "Run the selenium server (cd scripts && ./selenium_server.sh)"
-#echo "Run the selenium script (cd scripts && ./selenium.sh)"
+# Testing with coverage
+yeti src/*/tests/unit/*.html --server --query 'filter=coverage'

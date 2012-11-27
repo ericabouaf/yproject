@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-var fs     = require("fs"),
-    ejs    = require('ejs'),
+/*jshint node:true*/
+"use strict";
+
+var fs = require("fs"),
+    ejs = require('ejs'),
     optimist = require('optimist');
 
 var argv = optimist
