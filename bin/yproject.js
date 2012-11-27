@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
 var fs     = require("fs"),
-    ejs    = require('ejs'),
-    xml2js = require('xml2js');
+    ejs    = require('ejs');
+
+// yproject XXXX
+//
+//
+// cd ..
+// yproject --docs --recursive
+// yproject -d -r
 
 // "widget-parent".camelize() -> "WidgetParent"
 if(!String.prototype.camelize) {
@@ -63,7 +69,8 @@ yproject = {
          // Retrieve the project name:
          var data = fs.readFileSync('src/build.xml', encoding="utf8");
          
-         var parser = new xml2js.Parser();
+         // TODO
+         /*var parser = new xml2js.Parser();
          parser.addListener('end', function(result) {
             var projectName = result["@"]["name"];
             yproject.copyDirSyncRecursive( __dirname+'/../templates/widget', 'src/'+moduleName, {projectName: projectName, moduleName: moduleName});
@@ -72,7 +79,7 @@ yproject = {
             console.log("Now edit the build.properties file to set the correct path to the builder");
             
          });
-         parser.parseString(data);
+         parser.parseString(data);*/
          
       },
       
@@ -191,8 +198,8 @@ process.on("uncaughtException", function(e) {
 if (!command) conf.usage = true;
 
 if (conf.usage && command !== "help") {
-  arglist.unshift(command)
-  command = "help"
+  arglist.unshift(command);
+  command = "help";
 }
 
 yproject.commands[command](arglist);

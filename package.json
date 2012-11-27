@@ -12,9 +12,11 @@
         "node" : ">=0.4.0"
     },
     "bin" : {
-       "yproject" : "./bin/yproject.js"
+       "yproject" : "./bin/yproject.js",
+       "ymodule" : "./bin/ymodule.js"
     },
     "dependencies": {
+        "optimist": "0.3.4",
         "ejs" : ">=0.4.3"
     },
     "licenses":[
