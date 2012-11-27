@@ -1,0 +1,16 @@
+{
+    "name": "<%= projectName %>",
+    "description": "<%= projectName %> - Edit me",
+    "version": "0.1.0",
+    "url": "http://www.github.com/neyric/yproject",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "true",
+        "paths": [ "./src" ],
+        "outdir": "./api",
+        
+        "external": {
+             "data": "http://yuilibrary.com/yui/docs/api/data.json"
+         }
+    }
+}

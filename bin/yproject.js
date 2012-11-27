@@ -4,7 +4,6 @@
 "use strict";
 
 var path = require('path');
-
 var yproject = require( path.join(__dirname, '..', 'lib', 'yproject' ) ).yproject;
 
 if (process.argv.length != 3) {

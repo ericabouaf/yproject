@@ -3,21 +3,37 @@
 /*jshint node:true*/
 "use strict";
 
-var fs = require("fs"),
-    ejs = require('ejs'),
-    optimist = require('optimist');
+var path = require('path');
+var yproject = require( path.join(__dirname, '..', 'lib', 'yproject' ) ).yproject;
+
+var optimist = require('optimist');
 
 var argv = optimist
     .usage('Create a YUI module or add missing directories')
-    .options('f', {
-        'alias' : 'file',
-        'default' : 'test.js',
-        'describe': 'file to execute in a node spawed process'
+    .options('a', {
+        'alias' : 'assets',
+        'default' : true,
+        'describe': 'create the assets/ directory, and make module skinnable'
     })
     .options('d', {
-        'alias' : 'demo',
-        'default' : 'awesome',
-        'describe': 'Here a small description'
+        'alias' : 'docs',
+        'default' : true,
+        'describe': 'create the docs/ directory for selleck'
+    })
+    .options('l', {
+        'alias' : 'lang',
+        'default' : true,
+        'describe': 'create the lang/ directory, and add module meta for intl'
+    })
+    .options('t', {
+        'alias' : 'tests',
+        'default' : true,
+        'describe': 'create the tests/ directory if true'
+    })
+    .options('w', {
+        'alias' : 'widget',
+        'default' : false,
+        'describe': 'use the widget template for the js file'
     })
     .options('h', {
         'alias' : 'help',
@@ -34,24 +50,15 @@ if (argv.help) {
 
 if (argv._.length > 0) {
     // We are creating a module !
-    console.log("TODO: create modules ", argv._);
+    
+    for (var i = 0; i < argv._.length; i++) {
+        var moduleName = argv._[i];
+        yproject.createModule(moduleName, argv);
+    }
+
 }
 else {
     // not creating a module
-    console.log("TODO: try to check if we are within a YUI module");
+    console.log("TODO: try to check if we are within a YUI module (if we have a build.json file)");
     console.log("THEN, apply these options to the current module", argv);
 }
-
-// ymodule XXXX
-
-// TODO: use optimist
-// TODO: make lang optionnal
-// TODO: make assets -
-// TODO: make docs
-// TODO: make tests
-
-// TODO: recursive 
-
-// cd XXXX
-// ymodule --docs
-// ymodule --tests

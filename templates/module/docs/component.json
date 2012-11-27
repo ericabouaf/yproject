@@ -1,0 +1,20 @@
+{
+   "name": "<%= moduleName %>",
+   "displayName": "<%= moduleName %>",
+   "description": "TODO",
+   "tags": [
+      "<%= moduleName %>"
+   ],
+   "use": [
+   ],
+   "examples": [
+       {
+           "name"       : "firstexample",
+           "displayName": "Basic example",
+           "description": "How to instantiate...",
+           "modules"    : ["<%= moduleName %>"],
+           "tags"       : [],
+           "hideTableOfContents": true
+       }
+   ]
+}
