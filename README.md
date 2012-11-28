@@ -43,14 +43,14 @@ Or install it as a developer :
 
     git clone git://github.com/neyric/yproject.git
     cd yproject
-    npm link .
+    npm link
 
 
 ## Usage
 
 ### Create a new project
 
-    yproject create myproject
+    yproject myproject
     
 This will create the following structure :
 

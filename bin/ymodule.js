@@ -60,8 +60,13 @@ if (argv._.length > 0) {
 
 }
 else {
-    // TODO: existing module
-    // not creating a module
-    console.log("TODO: try to check if we are within a YUI module (if we have a build.json file)");
-    console.log("THEN, apply these options to the current module", argv);
+
+    var moduleInfos = yproject.moduleLookup();
+    if (moduleInfos === false) {
+        yproject.log('err', 'Unable to find build.json in parent directories...');
+        yproject.log('err', 'Cannot update module !');
+        process.exit(1);
+    }
+
+    yproject.createModule(moduleInfos.name, argv);
 }

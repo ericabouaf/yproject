@@ -7,17 +7,18 @@ rm -rf mytest
 yproject mytest
 
 # Create some modules
-cd mytest/src
+cd mytest
 
 ymodule basic
 ymodule dummy --no-assets --no-lang
 ymodule myfirstwidget -w
 
 # Build Everything
+cd src
 shifter --walk
-
-# Build the doc
 cd ..
+
+# Build the doc (will read yuidoc.json)
 yuidoc
 
 # Documentation for the project
