@@ -1,174 +1,226 @@
 # yproject
 
-yproject is a command-line utility to scaffold projects and components using the YUI3 library and the [YUI Build Tool](http://yuilibrary.com/projects/builder)
+yproject is a command-line utility to scaffold YUI3 projects and modules.
 
 It contains a project template and a module template to quickly bootstrap your project enforcing best practices from the start.
 
-## Features
-
- * command to scaffold a project
- * command to scaffold a new module
- * command to scaffold a widget (with intl and skin files)
-
-The generated projects include :
-
- * default loader module to generate the YUI3 modules metadata with building script
- * development HTTP server using express.js to run tests
-
-Through YUI Builder 
-
- * ANT based build system YUI uses
- * Declare module dependencies for the YUI loader
- * Code checking with JSlint
- * code & assets minification with YUI Compressor
- 
-Through YUI Doc
-
- * Documentation: customizable script to generate the API documentation
- 
-Through YUI Test
-
- * Test Driven Development (TDD) : YUI Test, Selenium
- * YUI Test instrumentation script => Test coverage !
- * Selenium scripts to launch the tests
- * easy Continuous Integration with Hudson
- 
- * Think there's too much? The generated project is delete-key friendly. :)
 
 ## Installation
 
-    npm install yproject
+    $ [sudo] npm install -g yproject
 
 Or install it as a developer :
 
-    git clone git://github.com/neyric/yproject.git
-    cd yproject
-    npm link
+    $ git clone git://github.com/neyric/yproject.git
+    $ cd yproject
+    $ [sudo] npm link
 
 
 ## Usage
 
 ### Create a new project
 
-    yproject myproject
+    $ yproject myproject
     
 This will create the following structure :
 
     myproject/
-       api/
-       build/
-       lib/
-       README.md/
-       scripts/
+       README.md
+       package.json
+       yuidoc.json
        src/
+          common/
           myproject-loader/
 
-### Adding a module
+
+ * yuidoc.json is used to generate the API documentation using yuidocjs
+ * src/myproject-loader is a module which will generate a YUI3 seed file for using the YUI3 loader
+ * src/common contains a simple documentation template to use with selleck
+
+### Creating a new module
 
 Go to your project directory and type :
 
-    yproject module mymodule 
+    $ ymodule mymodule
 
 This will create the following structure in src/ :
 
     mymodule/
-       build.xml
-       build.properties
-       src/
+       build.json
+       README.md
+       js/
           mymodule.js
-       tests/
-          index.html
+       meta/
+          mymodule.json
 
-### Adding a widget
 
-Go to your project directory and type :
+#### Assets
 
-    yproject widget my-widget
+By default, ymodule will also create an 'assets' folder containing a 'sam' skin.
 
-This will create the following structure in src/ :
+It will also mark the module as skinnable in the meta file.
 
-    my-widget/
-       assets/
-          my-widget-core.css
-          skins/
-             sam/
-                my-widget-skin.css
-       build.xml
-       build.properties
-       lang/
-          my-widget.js
-          my-widget_fr.js
-       src/
-          my-widget.js
-       tests/
-          index.html
+To disable the assets generation, use the --no-assets (or --no-a) option :
 
-The generated widget is skinable and internationalizable by default.
+    $ ymodule mymodule --no-assets
 
-### Building
 
-You will need the [YUI Build Tool](http://yuilibrary.com/projects/builder) (which itself requires java & ant)
+#### Docs
 
-To build a specific module :
+By default, ymodule will generate a 'docs' folder containing two pages for the module description and a basic example.
 
-    cd src/mymodule
-    ant all
+It will later be used by the selleck documentation rendering.
 
-To build all modules :
+To disable the docs generation, use the --no-docs (or --no-d) option :
 
-    cd src
-    ant all
+    $ ymodule mymodule --no-docs
+
+
+#### Lang (I18n, intl)
+
+By default, ymodule will create a 'lang' folder containing a 'en' localization file.
+
+It will also require the 'intl' module in the meta file.
+
+To disable it, use the --no-lang (or --no-l) option :
+
+    $ ymodule mymodule --no-lang
+
+
+#### Tests
+
+By default, ymodule will create a 'tests' folder with a basic test case.
+
+To disable it, use the --no-tests (or --no-t) option :
+
+    $ ymodule mymodule --no-tests
+
+
+#### Widget
+
+By using the --widget option (or -w), ymodule will use a widget template for the generated javascript file :
+
+    $ ymodule mywidget -w
+
+
+### Updating an existing module
+
+If you already have a working module, you can add some options to it.
+
+Assuming you have a very basic module 'mymodule', with just the js/, meta/, and build.json files :
+
+    $ cd mymodule
+    $ ymodule --no-docs
+
+This command will generate assets/, tests/, and lang/ folders if they don't exist yet.
+Il will also add the missing dependencies in the meta.json file.
+
+
 
 ### Default loader module
 
 A special module is created when you create a new project (ex: "myproject-loader"), which adds your module definitions to the YUI loader utility.
 
-The YUI 3 component uses a [python script](https://github.com/yui/yui3/blob/master/src/loader/meta_join.py) to generate the JSON metadata from the src/*/meta/*.json files. 
+This module is auto-generated, so you won't have to touch anything in it.
 
-However, I noticed that in most projects or librairies, we can generate directly generate this JSON from the build.properties file.
+You may want to edit the template/meta.js file to tweek some loader options.
 
-The generated module contains a meta_join.ssjs script, which is called by the build.xml file.
-It requires node.js.
+This module has to be re-built everytime you add a new module to the project, or when you change a meta file description in any module.
 
-(Note: the ssjs extension is to prevent YUI Doc to include this file in the API documentation)
-
-### Documentation
-
-To build the documentation, you will need [YUI Doc](http://developer.yahoo.com/yui/yuidoc/)
-
-A script is installed into the project directory (scripts/apidoc.sh)
-
- * it expects YUI Doc to be found at the same directory level as your project.
- * it defaults to the "Dana" theme template, also expected at the same directory level
-
-You can change those, as well as other options (such as the project's version, name, url, ...) by editing the scripts/apidoc.sh file.
-
-(Note: I suggest you use the webpro fork of the Dana theme, which fixes some bugs https://github.com/webpro/yuidoc-theme-dana )
-
-(Note: make sure that the template directory isn't a git repository, because YUI Doc doesn't like that. rm -rf .git)
+    $ cd src/myproject-loader
+    $ shifter
 
 
-### Local server
 
-    cd scripts
-    node server.js
+## Building modules
 
-### Testing
+<p>We use <a href="http://davglass.github.com/shifter/">shifter</a> to build YUI modules.</p>
 
-If you're not familiar with YUI Test, I suggest you take a look at those videos :
+<p>To install shifter :</p>
 
- * http://developer.yahoo.com/yui/theater/video.php?v=adams-yuiconf2009-testing
- * http://developer.yahoo.com/yui/theater/video.php?v=yuiconf2010-yuitest
+```terminal
+$ [sudo] npm install -g shifter
+```
 
-YUI Test
+<p>To build the 'container' module :</p>
 
- * Write Tests using YUI test. 
- * The generated modules contains a default test, which uses the instrumented code
+```terminal
+$ cd src/container
+$ shifter
+```
 
-Selenium
+<p>To build all modules at once :</p>
 
- * run scripts/gen_tests_xml.js => generates the tests.xml file to launch selenium tests
- * Automatically save test results
+```terminal
+$ cd src
+$ shifter --walk
+```
+
+## Building user guides and examples pages
+
+<p>We are using <a href="http://rgrove.github.com/selleck/">selleck</a> to build the examples and user guide pages.</p>
+
+
+<p>To install shifter :</p>
+
+```terminal
+$ [sudo] npm install -g selleck
+```
+
+<p>To build all docs :</p>
+
+```terminal
+$ selleck --out docs
+```
+
+## Building the API documentation
+
+<p>The API documentation is build using <a href="https://github.com/yui/yuidoc">YUIDocJS</a>.</p>
+
+
+<p>To install YUIDocJS :</p>
+
+```terminal
+$ [sudo] npm install -g yuidocjs
+```
+
+<p>From the main directory, type :</p>
+
+```terminal
+$ yuidoc
+```
+
+<p>It should generate the doc in the api/ folder.</p>
+
+
+## How to run the tests
+
+<p>Tests are executed with <a href="https://github.com/yui/yeti">Yeti</a>.</p>
+
+
+<p>To install Yeti :</p>
+
+```terminal
+$ [sudo] npm install -g yeti
+```
+
+<p>From the main directory, type :</p>
+
+```terminal
+$ yeti src/*/tests/unit/*.html
+```
+
+<p>This command creates a one shot server and return you an adress which you have to connect a browser in order to run the tests. You can also invoke the same command with "--server" in order to have a persistent server  </p>
+
+```terminal
+$ yeti src/*/tests/unit/*.html --server
+```
+
+<p>Testing with coverage :</p>
+
+```terminal
+$ yeti src/*/tests/unit/*.html --server --query 'filter=coverage'
+```
 
 
 ## Full example

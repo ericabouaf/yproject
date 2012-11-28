@@ -43,7 +43,7 @@ $ [sudo] npm install -g selleck
 $ selleck --out docs
 ```
 
-<h3>Building the API documentation</h3>
+## Building the API documentation
 
 <p>The API documentation is build using <a href="https://github.com/yui/yuidoc">YUIDocJS</a>.</p>
 
