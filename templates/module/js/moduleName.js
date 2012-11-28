@@ -9,12 +9,13 @@
  * @class <%= moduleName %>
  * @constructor
  */
-<%= moduleName.camelize() %> = function() {};
+var <%= moduleName.camelize() %> = function() {};
 
 <%= moduleName.camelize() %>.prototype = {
 
 	/**
 	 * Just a dummy method
+     * @method
 	 */
 	someFunc: function() {
 			return true;
