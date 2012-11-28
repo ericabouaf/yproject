@@ -15,13 +15,13 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
    
    initializer: function() {
       /*
-       * initializer is part of the lifecycle introduced by 
+       * initializer is part of the lifecycle introduced by
        * the Base class. It is invoked during construction,
        * and can be used to setup instance specific state or publish events which
-       * require special configuration (if they don't need custom configuration, 
+       * require special configuration (if they don't need custom configuration,
        * events are published lazily only if there are subscribers).
        *
-       * It does not need to invoke the superclass initializer. 
+       * It does not need to invoke the superclass initializer.
        * init() will call initializer() for all classes in the hierarchy.
       */
 
@@ -36,14 +36,14 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
 
    destructor : function() {
       /*
-       * destructor is part of the lifecycle introduced by 
+       * destructor is part of the lifecycle introduced by
        * the Widget class. It is invoked during destruction,
        * and can be used to cleanup instance specific state.
        *
        * Anything under the boundingBox will be cleaned up by the Widget base class
        * We only need to clean up nodes/events attached outside of the bounding Box
        *
-       * It does not need to invoke the superclass destructor. 
+       * It does not need to invoke the superclass destructor.
        * destroy() will call initializer() for all classes in the hierarchy.
        */
    },
@@ -58,19 +58,19 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
        *     syncUI()
        *
        * renderUI is intended to be used by the Widget subclass
-       * to create or insert new elements into the DOM. 
+       * to create or insert new elements into the DOM.
        */
 
-      // this._mynode = Node.create(Y.substitute(<%= moduleName.camelize() %>.MYNODE_TEMPLATE, {mynodeid: this.get("id") + "_mynode"})); 
+      // this._mynode = Node.create(Y.substitute(<%= moduleName.camelize() %>.MYNODE_TEMPLATE, {mynodeid: this.get("id") + "_mynode"}));
    },
 
    bindUI : function() {
       /*
-       * bindUI is intended to be used by the Widget subclass 
+       * bindUI is intended to be used by the Widget subclass
        * to bind any event listeners which will drive the Widget UI.
-       * 
+       *
        * It will generally bind event listeners for attribute change
-       * events, to update the state of the rendered UI in response 
+       * events, to update the state of the rendered UI in response
        * to attribute value changes, and also attach any DOM events,
        * to activate the UI.
        */
@@ -91,7 +91,7 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
 
    // Beyond this point is the <%= moduleName.camelize() %> specific application and rendering logic
 
-   // Attribute state supporting methods (see attribute config above) 
+   // Attribute state supporting methods (see attribute config above)
   
    /*_defAttrAVal : function() {
       // this.get("id") + "foo";
@@ -112,13 +112,13 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
    // Listeners, UI update methods
 
    _afterAttrAChange : function(e) {
-      // Listens for changes in state, and asks for a UI update (controller). 
+      // Listens for changes in state, and asks for a UI update (controller).
 
       // this._uiSetAttrA(e.newVal);
    },
 
    _uiSetAttrA : function(val) {
-      // Update the state of attrA in the UI (view) 
+      // Update the state of attrA in the UI (view)
 
       // this._mynode.set("innerHTML", val);
    },
@@ -142,7 +142,7 @@ var <%= moduleName.camelize() %> = Y.Base.create("<%= moduleName.camelize(true) 
          readOnly: true ,
          writeOnce: true,
          lazyAdd: false ,
-         broadcast: 1 
+         broadcast: 1
       }*/
    }
    

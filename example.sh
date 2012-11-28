@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# remove previous test
+rm -rf mytest
+
 # Create the project
 yproject mytest
 

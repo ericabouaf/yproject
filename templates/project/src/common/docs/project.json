@@ -5,15 +5,15 @@
 
     "yuiBuildUrl"     : "build",
     "yuiLocalBuildUrl": "build",
-    "yuiVersion"      : "3.7.2",
-    "yuiSeedUrl"      : "http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js",
+    "yuiVersion"      : "3.7.3",
+    "yuiSeedUrl"      : "http://yui.yahooapis.com/3.7.3/build/yui/yui-min.js",
     
     "<%= projectName %>SeedUrl" : "../build/<%= projectName %>-loader/<%= projectName %>-loader.js",
 
     "componentDefaults": {
         "yuiBuildUrl"     : "../build",
         "yuiLocalBuildUrl": "../build",
-        "yuiSeedUrl"      : "http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js",
+        "yuiSeedUrl"      : "http://yui.yahooapis.com/3.7.3/build/yui/yui-min.js",
         "<%= projectName %>SeedUrl" : "../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"
     },
 

@@ -11,9 +11,9 @@ YUI().use(function(Y) {
       }
    };
 
-   if (typeof YUI_config === 'undefined') {
+   /*if (typeof YUI_config === 'undefined') {
       YUI_config = {groups: {}};
-   }
+   }*/
    if (typeof YUI_config.groups === 'undefined') {
       YUI_config.groups = {};
    }

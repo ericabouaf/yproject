@@ -15,7 +15,7 @@ var <%= moduleName.camelize() %> = function() {};
 
 	/**
 	 * Just a dummy method
-     * @method
+     * @method someFunc
 	 */
 	someFunc: function() {
 			return true;
