@@ -13,14 +13,14 @@ var <%= moduleName.camelize() %> = function() {};
 
 <%= moduleName.camelize() %>.prototype = {
 
-	/**
-	 * Just a dummy method
+   /**
+    * Just a dummy method
      * @method someFunc
-	 */
-	someFunc: function() {
-			return true;
-	}
-	
+    */
+   someFunc: function() {
+         return true;
+   }
+   
 };
 
 Y.<%= moduleName.camelize() %> = <%= moduleName.camelize() %>;
