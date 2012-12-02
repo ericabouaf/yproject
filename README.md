@@ -161,7 +161,7 @@ $ shifter --walk
 <p>We are using <a href="http://rgrove.github.com/selleck/">selleck</a> to build the examples and user guide pages.</p>
 
 
-<p>To install shifter :</p>
+<p>To install selleck :</p>
 
 ```terminal
 $ [sudo] npm install -g selleck
