@@ -1,23 +1,28 @@
+YUI.add("<%= moduleName %>-test", function(Y) {
 
-YUI.add("<%= moduleName %>-test", function (Y) {
+    var suite, testCase;
 
-    var suite = new Y.Test.Suite({
+    suite = new Y.Test.Suite({
         name: "<%= moduleName %> Test Suite"
-    }),
-        testCase = new Y.Test.Case({
+    });
 
-            name: "<%= moduleName %> first test case",
-            testGeneration: function () {
+    testCase = new Y.Test.Case({
 
-                Y.log("test",'debug');
+        name: "<%= moduleName %> test case",
 
-                var instance = new Y.<%= moduleName.camelize() %>({
-                });
+        setUp: function () {},
+        tearDown: function () {},
 
-                Y.Assert.isObject(instance);
-        
-            }
-        });
+        "test <%= moduleName %> generation": function () {
+
+            Y.log("test", 'debug');
+
+            var instance = new Y.<%= moduleName.camelize() %>({});
+
+            Y.Assert.isObject(instance);
+
+        }
+    });
 
     suite.add(testCase);
     Y.Test.Runner.add(suite);

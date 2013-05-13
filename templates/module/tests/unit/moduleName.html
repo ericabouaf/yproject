@@ -33,14 +33,20 @@ YUI({
   
     window.Y = Y; // keep this for the yui selenium driver
 
-   //create the console
-   (new Y.Test.Console({
-      newestOnTop : false,
-      filters: {
-         pass: true,
-         fail: true
-      }
-   })).render('#testLogger');
+    //create the console
+    (new Y.Test.Console({
+        newestOnTop : false,
+        filters: {
+            pass: true,
+            fail: true
+        }
+    })).render('#testLogger');
+
+    Y.Test.Runner.on('fail', function (e) {
+        if (e.error.cause && e.error.stack) {
+            console.error(e.error.stack);
+        }
+    });
   
     Y.Test.Runner.run();
     
