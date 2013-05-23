@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title><%= moduleName %> tests</title>
-    <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
+    <script src="http://yui.yahooapis.com/3.9.1/build/yui/yui.js"></script>
     <% if (projectName) { %>
     <script src="../../../../build/<%= projectName %>-loader/<%= projectName %>-loader.js"></script>
     <% } else { %>
@@ -16,7 +16,6 @@
 <script>
 
 YUI({
-    coverage: ['<%= moduleName %>'],
     "groups": {
         '<%= projectName %>': {
             base: '../../../../build/'
@@ -29,7 +28,11 @@ YUI({
             requires: ["test","<%= moduleName %>"]
         }
     }
-}).use("test", "test-console", "<%= moduleName %>", "<%= moduleName %>-test", function(Y) {
+
+    // Uncomment this line if you want coverage for this single module
+    //,coverage: ['<%= moduleName %>'],
+
+}).use("test", "test-console", "<%= moduleName %>-test", function(Y) {
   
     window.Y = Y; // keep this for the yui selenium driver
 
